@@ -63,7 +63,9 @@ a:hover {
 i {
    color: var(--icon-color); 
 }
-
+b{
+    font-weight: 400;
+}
 .header {
     display: flex;
     flex-flow: row wrap;
@@ -74,34 +76,46 @@ i {
     width: 100%;
     padding: 0.5rem 1rem;
     z-index: 2;/*sobreposição*/
+    background: var(--primary-bg-color);
 }
    
 .header-logo .logo{
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 130px;
+    height: 130px;
+    
+    position: relative;
+    bottom: 15px;
 }
 
-.header-logo .logo2 {
-    width: 15rem;
-    height: 2rem;
+.header-logo {
+    /* width: 15rem; */
+    height: 5rem;
     margin-left: 10px;
     position: relative;
-    bottom: 5px;
+    bottom: 2px;
+}
+
+.header-toggle {
+    padding: 0;
+    margin: 0;
+    float: right;
 }
 
 html[data-theme='light'] .logo {
     filter: invert(1);
 } 
 
-html[data-theme='light'] .logo2 {
+/* html[data-theme='light'] .logo2 {
     filter: invert(1);
-} 
+}  */
 
 #toggleTheme {
     font-size: 1.5rem; 
     color: var(--icon-color);
     cursor: pointer;
     transition: ease-in-out .4s;
+    float: right;
+    position: relative;
 }
 
 .menu {
@@ -285,7 +299,7 @@ html[data-theme='light'] .logo2 {
     font-size: 1rem;
 }
 
-/* Sobre */
+/* === Sobre === */
 .sobre {
     display: flex;
     flex-direction: column;
@@ -298,12 +312,123 @@ html[data-theme='light'] .logo2 {
     align-items: flex-start;
     justify-content: flex-start;
 }
-
-.sobre-perfil {
+.sobre-perfil {   /* imagem */
     width: 100%;
     border-radius: 50rem;
-    border: 8px solid var(--link-color);
+    border: 8px solid var(--link-color); /* cor da borda */
+}
 
+.sobre-descricao {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: justify;
+    gap: 1rem;
+}
+
+.sobre-icones {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sobre-icones i {
+    font-size: 1.25rem;
+}
+
+.sobre-content2 .col1,
+.sobre-content2 .col2 {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    gap: 1rem;
+}
+
+.sobre-content2 .col1 .row1,
+.sobre-content2 .col1 .row2 {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    padding: 0.75rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--primary-border-color);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: ease-in-out .3s;
+    border-radius: 0;
+}
+.accordion-header span {
+    color: var(--title-color);
+}
+
+.accordion-header.start {
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+  
+.accordion-header.end,
+.accordion-item.active .accordion-body.end {
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+  
+.accordion-item.active .accordion-header.end{
+    border-radius: 0;
+}
+
+.accordion-body {
+    display: none;
+    padding: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .625rem;
+    border: 1px solid var(--primary-border-color);
+}
+.accordion-item.active .accordion-header {
+    background: var(--secondary-bg-color);
+}
+.accordion-item.active .accordion-body {
+    display: flex;
+}
+.accordion-item.active .bi-caret-down-fill {
+    transform: rotate(180deg);
+}
+
+/* Contato */
+.contato {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-top: 1px solid var(--primary-border-color);
+    border-bottom: 1px solid var(--secondary-border-color);
+}
+.contato p {
+    text-align: center;
+}
+
+.contato .btn {
+    width: auto;
+}
+
+.contato .email {
+    text-transform: uppercase;
+}
+
+/* Roda Pé = Footer */
+footer {
+    margin-bottom: 5rem;
+}
+footer p {
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
 }
 
 /* =====  --------------------- ======= */
@@ -349,8 +474,9 @@ html[data-theme='light'] .logo2 {
         margin: 0;
     }
 }  
-/* -------- fim resolução 768 */
 
+
+/* -------- fim resolução 768 */
 
 @media (min-width: 992px) {
     .projeto-card {
@@ -367,26 +493,36 @@ html[data-theme='light'] .logo2 {
     .sobre {
         gap: 5rem;
     }
-
-    .sobre-content1, .sobre-content2 {
+    .sobre-content1, 
+    .sobre-content2 {
         display: grid;
         grid-template-columns: 34% 60%;
         justify-content: flex-start;
         align-items: flex-start;
         gap: 4rem;
     }
+    .sobre-descricao h2 {
+        text-align: left;
+    }
+    .descricao-button {
+        justify-content: flex-start;
+    }
 }
-@media(min-widht:1200px) {
-    h2{
+
+@media (min-width: 1200px) {
+    h2 {
         font-size: 4rem;
     }
-    h3{ 
+    h3 {
         font-size: 2.5rem;
     }
-    #home{
+    #home {
         padding: 10rem 6rem 2rem;
     }
-    p, span,li {
+    .main-content .btn {
+        width: auto;
+    }
+    p, span, li {
         font-size: 1.15rem;
     }
     .card-button .btn,
@@ -394,6 +530,21 @@ html[data-theme='light'] .logo2 {
         width: auto;
     }
 }
-@media(min-widht:1400px){
-    h1
+
+@media (min-width: 1400px) {
+    h1 {
+        font-size: 6.25rem;
+    }
+    h2 {
+        font-size: 4.5rem;
+    }
+    h3 {
+        font-size: 3.25rem;
+    }
+    .header {
+        padding: 12rem 15rem 2rem;
+    }
+    .projetos, .sobre {
+        padding: 10rem 15rem 4rem;
+    }
 }
